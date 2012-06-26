@@ -1,0 +1,271 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXApplicationTarget section */
+		7D1C6FB408E3D669007F2665 /* texture22 */ = {
+			isa = PBXApplicationTarget;
+			buildConfigurationList = 7D6E42640FD6BC9B000344D4 /* Build configuration list for PBXApplicationTarget "texture22" */;
+			buildPhases = (
+				7D1C6FAF08E3D669007F2665 /* Headers */,
+				7D1C6FB008E3D669007F2665 /* Resources */,
+				7D1C6FB108E3D669007F2665 /* Sources */,
+				7D1C6FB208E3D669007F2665 /* Frameworks */,
+				7D1C6FB308E3D669007F2665 /* Rez */,
+			);
+			dependencies = (
+			);
+			name = texture22;
+			productInstallPath = "$(USER_APPS_DIR)";
+			productName = texture22;
+			productReference = 7D1C6FB508E3D669007F2665 /* texture22.app */;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string></string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string></string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string></string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>0.0.1d1</string>
+</dict>
+</plist>
+";
+		};
+/* End PBXApplicationTarget section */
+
+/* Begin PBXBuildFile section */
+		7D1C6FB908E3D675007F2665 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1C6FB808E3D675007F2665 /* GLUT.framework */; };
+		7D1C6FCE08E3D685007F2665 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1C6FCD08E3D685007F2665 /* OpenGL.framework */; };
+		7D1C6FE108E3D691007F2665 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1C6FE008E3D691007F2665 /* Foundation.framework */; };
+		7D1C705508E3D6AA007F2665 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C705408E3D6AA007F2665 /* main.cpp */; };
+		7D1C705808E3D6B7007F2665 /* trackball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C705608E3D6B7007F2665 /* trackball.cpp */; };
+		7D1C705908E3D6B7007F2665 /* trackball.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D1C705708E3D6B7007F2665 /* trackball.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7D1C6FB508E3D669007F2665 /* texture22.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = texture22.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D1C6FB808E3D675007F2665 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
+		7D1C6FCD08E3D685007F2665 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		7D1C6FE008E3D691007F2665 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		7D1C705408E3D6AA007F2665 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		7D1C705608E3D6B7007F2665 /* trackball.cpp */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = sourcecode.cpp.cpp; path = trackball.cpp; sourceTree = "<group>"; };
+		7D1C705708E3D6B7007F2665 /* trackball.h */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = sourcecode.c.h; path = trackball.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7D1C6FB208E3D669007F2665 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D1C6FB908E3D675007F2665 /* GLUT.framework in Frameworks */,
+				7D1C6FCE08E3D685007F2665 /* OpenGL.framework in Frameworks */,
+				7D1C6FE108E3D691007F2665 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7D1C6F6F08E3D63F007F2665 = {
+			isa = PBXGroup;
+			children = (
+				7D1C6FB808E3D675007F2665 /* GLUT.framework */,
+				7D1C6FCD08E3D685007F2665 /* OpenGL.framework */,
+				7D1C6FE008E3D691007F2665 /* Foundation.framework */,
+				7D1C705408E3D6AA007F2665 /* main.cpp */,
+				7D1C705608E3D6B7007F2665 /* trackball.cpp */,
+				7D1C705708E3D6B7007F2665 /* trackball.h */,
+				7D1C6FB608E3D669007F2665 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7D1C6FB608E3D669007F2665 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7D1C6FB508E3D669007F2665 /* texture22.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		7D1C6FAF08E3D669007F2665 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D1C705908E3D6B7007F2665 /* trackball.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXProject section */
+		7D1C6F7308E3D63F007F2665 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 7D6E42630FD6BC9B000344D4 /* Build configuration list for PBXProject "texture22" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 1;
+			mainGroup = 7D1C6F6F08E3D63F007F2665;
+			productRefGroup = 7D1C6FB608E3D669007F2665 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7D1C6FB408E3D669007F2665 /* texture22 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7D1C6FB008E3D669007F2665 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		7D1C6FB308E3D669007F2665 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7D1C6FB108E3D669007F2665 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D1C705508E3D6AA007F2665 /* main.cpp in Sources */,
+				7D1C705808E3D6B7007F2665 /* trackball.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		7D6E425D0FD6BC9B000344D4 /* 開発 */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = "開発";
+		};
+		7D6E425E0FD6BC9B000344D4 /* 運用 */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = "運用";
+		};
+		7D6E425F0FD6BC9B000344D4 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Default;
+		};
+		7D6E42600FD6BC9B000344D4 /* 開発 */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = texture22;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+			};
+			name = "開発";
+		};
+		7D6E42610FD6BC9B000344D4 /* 運用 */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = texture22;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+			};
+			name = "運用";
+		};
+		7D6E42620FD6BC9B000344D4 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = texture22;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7D6E42630FD6BC9B000344D4 /* Build configuration list for PBXProject "texture22" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D6E425D0FD6BC9B000344D4 /* 開発 */,
+				7D6E425E0FD6BC9B000344D4 /* 運用 */,
+				7D6E425F0FD6BC9B000344D4 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		7D6E42640FD6BC9B000344D4 /* Build configuration list for PBXApplicationTarget "texture22" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D6E42600FD6BC9B000344D4 /* 開発 */,
+				7D6E42610FD6BC9B000344D4 /* 運用 */,
+				7D6E42620FD6BC9B000344D4 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7D1C6F7308E3D63F007F2665 /* Project object */;
+}
