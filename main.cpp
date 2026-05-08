@@ -84,7 +84,7 @@ static GLsizei width, height;
 /*
 ** 初期化
 */
-static void init(void)
+static void init()
 {
   int i;
   
@@ -160,7 +160,7 @@ static void init(void)
 /*
 ** シーンの描画
 */
-static void scene(void)
+static void scene()
 {
   static const GLfloat color[] = { 1.0f, 1.0f, 1.0f, 1.0f };  /* 材質 (色) */
   
@@ -200,7 +200,7 @@ static void scene(void)
 ** GLUT のコールバック関数 **
 ****************************/
 
-static void display(void)
+static void display()
 {
   /* 画面クリア */
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -289,7 +289,7 @@ static void resize(int w, int h)
   trackballRegion(w, h);
 }
 
-static void idle(void)
+static void idle()
 {
   /* 画面の描き替え */
   glutPostRedisplay();
