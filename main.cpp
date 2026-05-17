@@ -136,6 +136,7 @@ static void init()
 
   /* 星のディスプレイリストを作成する */
   glNewList(stars, GL_COMPILE);
+
 #if 1
   /* 星として箱をいっぱい描く */
   for (int i = 0; i < MAXSTARS; ++i) {
@@ -162,6 +163,8 @@ static void init()
   glutSolidCube(1.0);
   glPopMatrix();
 #endif
+
+  /* ディスプレイリストの作成終了 */
   glEndList();
 }
 
