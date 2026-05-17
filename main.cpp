@@ -250,7 +250,7 @@ static void display()
   glLoadIdentity();
   glScaled(-1.0, -1.0, 1.0);
 
-#if 1
+#if 1 /* ここを 0 にするとマッピングするテクスチャの方を見ることができます */
   /* 表示用の画面クリア */
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
