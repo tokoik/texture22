@@ -1,15 +1,19 @@
-﻿#include <stdio.h>
+﻿#if defined(__APPLE__)
+#  define GL_SILENCE_DEPRECATION
+#  include <GLUT/glut.h>
+#  include <OpenGL/glext.h>
+#else
+#  if defined(_WIN32)
+//#    pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
+#    define _USE_MATH_DEFINES
+#    define _CRT_SECURE_NO_WARNINGS
+#  endif
+#  include <GL/glut.h>
+#  include <GL/glext.h>
+#endif
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#if defined(_WIN32)
-//#  pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
-#  include "glut.h"
-#  include "glext.h"
-#elif defined(__APPLE__) || defined(MACOSX)
-#  include <GLUT/glut.h>
-#else
-#  include <GL/glut.h>
-#endif
 
 /* トラックボール処理用関数の宣言 */
 #include "trackball.h"
@@ -17,20 +21,24 @@
 /*
 ** 光源
 */
-static const GLfloat lightpos[] = { 4.0, 5.0, 6.0, 1.0 }; /* 位置　　　 */
-static const GLfloat lightcol[] = { 1.0, 1.0, 1.0, 1.0 }; /* 直接光強度 */
-static const GLfloat lightamb[] = { 0.1, 0.1, 0.1, 1.0 }; /* 環境光強度 */
+static const GLfloat lightpos[] = { 4.0f, 5.0f, 6.0f, 1.0f }; /* 位置　　　 */
+static const GLfloat lightcol[] = { 1.0f, 1.0f, 1.0f, 1.0f }; /* 直接光強度 */
+static const GLfloat lightamb[] = { 0.1f, 0.1f, 0.1f, 1.0f }; /* 環境光強度 */
 
 /*
 ** テクスチャ
 */
-#define TEXWIDTH  128                       /* テクスチャの幅　　　　　 */
-#define TEXHEIGHT 128                       /* テクスチャの高さ　　　　 */
+#define TEXWIDTH  128                               /* テクスチャの幅　　　 */
+#define TEXHEIGHT 128                               /* テクスチャの高さ　　 */
+
+/*
+** キューブマッピングのターゲットと，そこに向かう視線の向きと「上」の方向
+*/
 static const struct {
-  GLenum name;                              /* テクスチャのターゲット名 */
-  GLint x, y;                               /* ビューポートの位置　　　 */
-  GLdouble cx, cy, cz;                      /* 視線の向き　　　　　　　 */
-  GLdouble ux, uy, uz;                      /* 「上」の方向　　　　　　 */
+  GLenum name;                                  /* テクスチャのターゲット名 */
+  GLint x, y;                                   /* ビューポートの位置　　　 */
+  GLdouble cx, cy, cz;                          /* 視線の向き　　　　　　　 */
+  GLdouble ux, uy, uz;                          /* 「上」の方向　　　　　　 */
 } target[] = {
   { /* 左 */
     GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
@@ -86,51 +94,51 @@ static GLsizei width, height;
 */
 static void init()
 {
-  int i;
-  
-  /* テクスチャ画像はバイト単位に詰め込まれている */
+  /* テクスチャ画像はワード単位に詰め込まれている */
   glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
-  
-  for (i = 0; i < 6; ++i) {
-    /* テクスチャの割り当て */
+
+  /* キューブマッピングの各ターゲットのテクスチャを割り当てる */
+  for (int i = 0; i < 6; ++i) {
     glTexImage2D(target[i].name, 0, GL_RGBA, TEXWIDTH, TEXHEIGHT, 0,
       GL_RGBA, GL_UNSIGNED_BYTE, 0);
   }
-  
+
   /* テクスチャを拡大・縮小する方法の指定 */
   glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
   glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-  
+
   /* テクスチャの繰り返し方法の指定 */
   glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
   glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-  
+
   /* テクスチャ環境 */
   glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-  
+
   /* キューブマッピング用のテクスチャ座標を生成する */
   glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_REFLECTION_MAP);
   glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_REFLECTION_MAP);
   glTexGeni(GL_R, GL_TEXTURE_GEN_MODE, GL_REFLECTION_MAP);
-  
+
   /* 初期設定 */
-  glClearColor(0.3, 0.3, 1.0, 1.0);
+  glClearColor(0.3f, 0.3f, 1.0f, 0.0f);
   glEnable(GL_DEPTH_TEST);
   glDisable(GL_CULL_FACE);
-  
+
   /* 光源の初期設定 */
   glEnable(GL_LIGHTING);
   glEnable(GL_LIGHT0);
   glLightfv(GL_LIGHT0, GL_DIFFUSE, lightcol);
   glLightfv(GL_LIGHT0, GL_SPECULAR, lightcol);
   glLightfv(GL_LIGHT0, GL_AMBIENT, lightamb);
-  
+
   /* 星の生成 */
   stars = glGenLists(1);
+
+  /* 星のディスプレイリストを作成する */
   glNewList(stars, GL_COMPILE);
 #if 1
   /* 星として箱をいっぱい描く */
-  for (i = 0; i < MAXSTARS; ++i) {
+  for (int i = 0; i < MAXSTARS; ++i) {
     float r = 2.5f * (float)rand() / (float)RAND_MAX + 2.5f;
     float t = 6.2831853f * (float)rand() / (float)RAND_MAX;
     float p = 3.1415926f * (float)rand() / (float)RAND_MAX;
@@ -139,7 +147,7 @@ static void init()
       0.9f * (float)rand() / (float)RAND_MAX + 0.1f,
       0.9f * (float)rand() / (float)RAND_MAX + 0.1f,
     };
-    
+
     glPushMatrix();
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, c);
     glTranslatef(r * sinf(p) * cosf(t), r * cosf(p), r * sinf(p) * sinf(t));
@@ -162,17 +170,16 @@ static void init()
 */
 static void scene()
 {
-  static const GLfloat color[] = { 1.0f, 1.0f, 1.0f, 1.0f };  /* 材質 (色) */
-  
   /* 星の描画 */
   glCallList(stars);
 
-  /* 材質の設定 */
+  /* 星に取り囲まれる物体の材質を設定する */
+  static const GLfloat color[] = { 1.0f, 1.0f, 1.0f, 1.0f };
   glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, color);
 
   /* テクスチャマッピング開始 */
   glEnable(GL_TEXTURE_CUBE_MAP);
-  
+
   /* テクスチャ座標の自動生成を有効にする */
   glEnable(GL_TEXTURE_GEN_S);
   glEnable(GL_TEXTURE_GEN_T);
@@ -185,12 +192,12 @@ static void scene()
   /* 球を描く */
   glutSolidSphere(1.5, 32, 16);
 #endif
-  
+
   /* テクスチャ座標の自動生成を無効にする */
   glDisable(GL_TEXTURE_GEN_S);
   glDisable(GL_TEXTURE_GEN_T);
   glDisable(GL_TEXTURE_GEN_R);
-  
+
   /* テクスチャマッピング終了 */
   glDisable(GL_TEXTURE_CUBE_MAP);
 }
@@ -202,24 +209,25 @@ static void scene()
 
 static void display()
 {
-  /* 画面クリア */
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  
   /* 透視変換行列の設定 */
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluPerspective(90.0, 1.0, 1.0, 10.0);
-  
+
   /* モデルビュー変換行列の設定 */
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  
+
+  /* テクスチャの６面分の画面クリア */
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
   /* テクスチャの作成 */
   for (int i = 0; i < 6; ++i) {
+
     /* ビューポートをテクスチャのサイズに設定する */
     glViewport(target[i].x, target[i].y, TEXWIDTH, TEXHEIGHT);
-    
-    /* 視線の方向を設定して，その向きに見えるものをレンダリング */
+
+    /* 視線の方向を設定して，その向きに見えるものをレンダリングする */
     glPushMatrix();
     gluLookAt(0.0, 0.0, 0.0,
       target[i].cx, target[i].cy, target[i].cz,
@@ -228,46 +236,46 @@ static void display()
     glMultMatrixd(trackballRotation());
     glCallList(stars);
     glPopMatrix();
-    
+
     /* レンダリングした結果をテクスチャメモリに移す */
     glCopyTexSubImage2D(target[i].name, 0, 0, 0,
       target[i].x, target[i].y, TEXWIDTH, TEXHEIGHT);
   }
-  
+
   /* テクスチャ変換行列の設定 */
   glMatrixMode(GL_TEXTURE);
   glLoadIdentity();
   glScaled(-1.0, -1.0, 1.0);
-  
+
 #if 1
-  /* 画面クリア */
+  /* 表示用の画面クリア */
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  
+
   /* ウィンドウ全体をビューポートにする */
   glViewport(0, 0, width, height);
-  
+
   /* 透視変換行列の指定 */
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluPerspective(60.0, (double)width / (double)height, 0.1, 10.0);
-  
+
   /* モデルビュー変換行列の設定 */
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  
+
   /* 視点の移動（物体の方を奥に移動）*/
   glTranslated(0.0, 0.0, -7.0);
-  
+
   /* 光源の位置を設定 */
   glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
-  
+
   /* トラックボール処理による回転 */
   glMultMatrixd(trackballRotation());
-  
+
   /* シーンの描画 */
   scene();
 #endif
-  
+
   /* ダブルバッファリング */
   glutSwapBuffers();
 }
