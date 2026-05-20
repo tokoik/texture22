@@ -122,7 +122,7 @@ static void init()
   /* 初期設定 */
   glClearColor(0.3f, 0.3f, 1.0f, 0.0f);
   glEnable(GL_DEPTH_TEST);
-  glEnable(GL_CULL_FACE);
+  glDisable(GL_CULL_FACE);
 
   /* 光源の初期設定 */
   glEnable(GL_LIGHTING);
