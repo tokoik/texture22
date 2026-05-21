@@ -6,7 +6,7 @@
 
 - [第２６回 レンダリング画像をテクスチャに使う](https://tokoik.github.io/blog/%E3%83%86%E3%82%AF%E3%82%B9%E3%83%81%E3%83%A3%E5%85%A5%E9%96%80/2005/09/23/texture.html)
 
-![レンダリング画像をテクスチャに使う](https://tokoik.github.io/blog/assets/images/texture22b.webp)
+![レンダリング画像をテクスチャに使う](https://tokoik.github.io/blog/assets/images/texture/texture22b.webp)
 
 ## 2. ビルド方法
 
